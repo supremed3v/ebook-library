@@ -12,16 +12,12 @@ const BooksSchema = new mongoose.Schema({
     required: true,
     maxLength: 20,
   },
-  summary: {
+  description: {
     type: String,
     required: true,
     maxLength: 200,
   },
-  selectedFile: String,
-  ebook_url: {
-    type: String,
-    required: true,
-  },
+  files: [Object],
   genre: {
     type: String,
     required: true,
