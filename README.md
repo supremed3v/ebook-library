@@ -10,6 +10,6 @@
 
 ## TODOs
 
-* Work on UI
+* Make UI better
 * Admin Dashboard where he can view and add books
 * Admin Login Route
