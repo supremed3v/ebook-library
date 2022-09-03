@@ -21,7 +21,7 @@ const addBook = async (req, res, next) => {
       files: filesArray,
     });
     await bookData.save();
-    res.status(201).send("book Uploaded Successfully");
+    res.status(201).send("Book Uploaded Successfully");
   } catch (error) {
     res.status(400).send(error.message);
   }
@@ -31,6 +31,15 @@ const listBooks = async (req, res) => {
   try {
     const books = await Books.find();
     res.status(200).send(books);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+const listSpecificBook = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const book = await Books.findById(id);
+    res.status(200).send(book);
   } catch (error) {
     res.status(400).send(error.message);
   }
@@ -46,4 +55,4 @@ const deleteBook = async (req, res) => {
   res.json({ message: "Book deleted successfully" });
 };
 
-module.exports = { addBook, listBooks, deleteBook };
+module.exports = { addBook, listBooks, deleteBook, listSpecificBook };
