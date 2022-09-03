@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const Books = require("../models/Books");
 
 const addBook = async (req, res, next) => {
@@ -26,4 +27,23 @@ const addBook = async (req, res, next) => {
   }
 };
 
-module.exports = { addBook };
+const listBooks = async (req, res) => {
+  try {
+    const books = await Books.find();
+    res.status(200).send(books);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
+const deleteBook = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send("No post with that id");
+
+  await Books.findByIdAndRemove(id);
+  res.json({ message: "Book deleted successfully" });
+};
+
+module.exports = { addBook, listBooks, deleteBook };

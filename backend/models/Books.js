@@ -10,12 +10,12 @@ const BooksSchema = new mongoose.Schema({
   author: {
     type: String,
     required: true,
-    maxLength: 20,
+    minLength: 3,
   },
   description: {
     type: String,
     required: true,
-    maxLength: 200,
+    minLength: 10,
   },
   files: [Object],
   genre: {
@@ -29,6 +29,7 @@ const BooksSchema = new mongoose.Schema({
       "Science Fiction",
       "Fantasy",
       "Historical",
+      "Personal Growth",
     ],
   },
   likeCount: {
